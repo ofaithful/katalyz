@@ -6,12 +6,12 @@ export class AppController {
     constructor(private readonly appService: AppService) {}
 
     @Post('/save')
-    saveCode(@Body() body: any): string {
+    saveCode(@Body() body: any): Promise<string> {
         return this.appService.save();
     }
 
     @Post('/claim')
-    claimCode(): string {
+    claimCode(@Body() body: any): Promise<string> {
         return this.appService.claim();
     }
 
