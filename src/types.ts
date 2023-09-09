@@ -1,33 +1,37 @@
-type PromocodeArguments = {
+export type PromocodeArguments = {
     age: number,
     meteo: {
         town: string
     }
 }
 
-export type PromocodeInput = {
+export type ClaimPromocodeInput = {
     promocode_name: string,
     arguments: PromocodeArguments
 }
 
-type ComparisonSet = {
+export type ComparisonSet = {
     lt?: number,
     gt?: number,
     eq?: number
 }
 
+export type DateSet = {
+    after: Date,
+    before: Date
+}
+
 type DateRule = {
-    '@date': {
-        after: Date,
-        before: Date
-    }
+    '@date': DateSet
+}
+
+export type MeteoSet = {
+    is: string,
+    temp: ComparisonSet
 }
 
 type MeteoRule = {
-    '@meteo': {
-        is: string,
-        temp: ComparisonSet
-    }
+    '@meteo': MeteoSet
 }
 
 type AgeRule = {
@@ -42,11 +46,25 @@ type AndRule = {
     '@and': (DateRule | MeteoRule | AgeRule | AndRule)[];
 }
 
-export type PromocodeModel = {
+export type Restrictions = (DateRule | MeteoRule | AgeRule | OrRule | AndRule)[]; 
+
+export type Promocode = {
     id: string,
     name: string,
     advantage: {
         percent: number
     },
-    restrictions: (DateRule | MeteoRule | AgeRule | OrRule | AndRule)[];
+    restrictions: Restrictions;
+}
+
+export type ClaimSuccess = {
+    promocode_name: string,
+    status: string,
+    advantage: { percent: number }
+}
+
+export type ClaimFailure = {
+    promocode_name: string,
+    status: string,
+    reasons: string
 }
