@@ -8,6 +8,10 @@ const store: Promocode[] = [];
 export class AppService {
     constructor(private validator: ValidatorService) {}
 
+    get store() {
+        return store;
+    }
+
     async save(input: Promocode): Promise<string> {
         store.push(input);
         return 'OK';

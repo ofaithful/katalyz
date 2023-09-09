@@ -1,6 +1,6 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import { GeoProvider } from 'src/geo-provider';
-import { ClaimPromocodeInput, ComparisonSet, DateSet, MeteoSet, Promocode, PromocodeArguments, Restrictions } from 'src/types';
+import { GeoProvider } from '../geo-provider';
+import { ClaimPromocodeInput, ComparisonSet, DateSet, MeteoSet, Promocode, Restrictions } from '../types';
 
 type Clause = {
     passed: boolean,

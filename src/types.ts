@@ -49,7 +49,6 @@ type AndRule = {
 export type Restrictions = (DateRule | MeteoRule | AgeRule | OrRule | AndRule)[]; 
 
 export type Promocode = {
-    id: string,
     name: string,
     advantage: {
         percent: number
